@@ -9,7 +9,7 @@ id,first_name,last_name,email,gender,ip_address,ssn,credit_card,bitcoin,street_a
 
 This node script will convert the customer-data.csv file into a JSON file. The 1st row of the CSV file acts as the keys/properties of the JSON object and the rest of the fields act as values. The JSON test file have an array with 1000 items. The Output JSON file will be produced in the same directory and named customer-data.json.
 
-Here's an example of the JSON file structure which your Node program will need to produce:
+Here's an example of the JSON file structure which this Node program will produce:
 
 [
   {
