@@ -47,8 +47,11 @@ Here's an example of the JSON file structure which this Node program will produc
   ```
 
 ### HOW MAKE A LOCAL INSTALLATION
+```
 > $ git clone git@github.com:jomayma/csv2json.git
 > $ cd csv2json
 > $ npm install
-> $ node csv2json.js <csv_input_file
-> (for example: `node csv2json.js test/customer-data.csv`)
+> $ node csv2json.js [csv_input_file]
+```
+(for example: `node csv2json.js test/customer-data.csv`)
+
