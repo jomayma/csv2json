@@ -1,9 +1,18 @@
 const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
+var path2inputCSVfile = process.argv[2]
 
-var path_input_file = path.join(__dirname, '/test/customer-data.csv')
-var path_output_file = path.join(__dirname, '/test/customer-data.json')
+if (path2inputCSVfile != null) {
+  var fnameWithoutExt = path.basename(path2inputCSVfile, path.extname(path2inputCSVfile))
+  var workingPath = path.dirname(path2inputCSVfile)
+  var path_input_file = path.join(__dirname, `${path2inputCSVfile}`)
+  var path_output_file = path.join(__dirname,workingPath,`${fnameWithoutExt}.json`)
+} else {
+  console.log("No input CSV file name was passed like 1st argument, for example: 'node csv2json.js test/customer-data.csv'")
+  process.exit(1)
+}
+
 var is_header_line = true
 var is_second_line = true
 var keys = []
@@ -58,7 +67,10 @@ rl.on("close", () => {
     else {
       try {    
         jsonObj = JSON.parse(data)
-        console.log(`CONGRATULATIONS! the output file is JSON object :: ${JSON.stringify(jsonObj)}`)
+        console.log(`Input file = ${path_input_file}`)
+        console.log(`Output file = ${path_output_file}`)
+        console.log("CONGRATULATIONS! the output file is JSON object")
+        //console.log(`CONGRATULATIONS! the output file is JSON object :: ${JSON.stringify(jsonObj)}`)
       } catch (e) {
         console.error(`OOPS! the output file is not JSON! ${e}`)
       }
