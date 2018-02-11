@@ -1,0 +1,26 @@
+{
+  "name": "module_1_assigment_lab",
+  "version": "1.0.0",
+  "description": "edX - Microsoft: DEV283x Introduction to Node.js - Module 1 Assignment Lab: CSV to JSON Converter",
+  "main": "csv2json.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node csv2json.js test/customer-data.csv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jomayma/csv2json.git"
+  },
+  "author": "jomayma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jomayma/csv2json/issues"
+  },
+  "homepage": "https://github.com/jomayma/csv2json#readme"
+}
