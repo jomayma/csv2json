@@ -36,16 +36,16 @@ rl.on('line', (line) => {
     var currentObjStr = ""
     values = splitFieldsFromLine(line, ',')
     if (is_second_line) {
-      currentObjStr += "\t{\n"
+      currentObjStr += "  {\n"
       is_second_line = false
     } else {
-      currentObjStr += "\t,{\n"
+      currentObjStr += "  ,{\n"
     }
-    currentObjStr += `\t\t"${keys[0]}": "${values[0]}"\n`
+    currentObjStr += `    "${keys[0]}": "${values[0]}"\n`
     for (let i = 1; i < keys.length; i++){
-      currentObjStr += `\t\t,"${keys[i]}": "${values[i]}"\n`
+      currentObjStr += `    ,"${keys[i]}": "${values[i]}"\n`
     }
-    currentObjStr += '\t}\n'
+    currentObjStr += '  }\n'
     fs.appendFileSync(path_output_file, currentObjStr)
   }
 });
@@ -60,7 +60,7 @@ rl.on("close", () => {
         jsonObj = JSON.parse(data)
         console.log(`CONGRATULATIONS! the output file is JSON object :: ${JSON.stringify(jsonObj)}`)
       } catch (e) {
-        console.error(`OPS! the output file is not JSON! ${e}`)
+        console.error(`OOPS! the output file is not JSON! ${e}`)
       }
     }
   })
