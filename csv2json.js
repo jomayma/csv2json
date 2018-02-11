@@ -50,4 +50,16 @@ rl.on('line', (line) => {
 
 rl.on("close", () => {
   fs.appendFileSync(path_output_file, ']')
+  //CHECKING THE JSON VALIDITY OF THE OUTPUT FILE
+  fs.readFile(path_output_file, {encoding: 'utf-8'}, function (error, data) {
+    if (error) return console.error(error)
+    else {
+      try {    
+        jsonObj = JSON.parse(data)
+        console.log(`CONGRATULATIONS! the output file is JSON object :: ${JSON.stringify(jsonObj)}`)
+      } catch (e) {
+        console.error(`OPS! the output file is not JSON! ${e}`)
+      }
+    }
+  })
 })
