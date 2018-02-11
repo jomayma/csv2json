@@ -1,9 +1,9 @@
-#edX - Microsoft: DEV283x
-##Introduction to Node.js
+# edX - Microsoft: DEV283x
+## Introduction to Node.js
 [About EdX course](https://courses.edx.org/courses/course-v1:Microsoft+DEV283x+2T2017/course/)
 
 
-###Module 1 Assignment Lab: CSV to JSON Converter
+### Module 1 Assignment Lab: CSV to JSON Converter
 
 Imagine you work at a Bitcoin exchange and you have customer information coming from another source: SSN, credit card and their bitcoin numbers. However, the file format is CSV and your exchange can only support JSON. This Node script will convert CSV into JSON.
 
@@ -46,9 +46,9 @@ Here's an example of the JSON file structure which this Node program will produc
   ...
   ```
 
-HOW MAKE A LOCAL INSTALLATION:
->$ git clone git@github.com:jomayma/csv2json.git
->$ cd csv2json
->$ npm install
->$ node csv2json.js <csv_input_file
->(for example: `node csv2json.js test/customer-data.csv`)
+### HOW MAKE A LOCAL INSTALLATION
+> $ git clone git@github.com:jomayma/csv2json.git
+> $ cd csv2json
+> $ npm install
+> $ node csv2json.js <csv_input_file
+> (for example: `node csv2json.js test/customer-data.csv`)
