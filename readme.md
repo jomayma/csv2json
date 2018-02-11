@@ -1,9 +1,9 @@
-edX - Microsoft: DEV283x
-Introduction to Node.js
-https://courses.edx.org/courses/course-v1:Microsoft+DEV283x+2T2017/course/
+#edX - Microsoft: DEV283x
+##Introduction to Node.js
+[About EdX course](https://courses.edx.org/courses/course-v1:Microsoft+DEV283x+2T2017/course/)
 
 
-Module 1 Assignment Lab: CSV to JSON Converter
+###Module 1 Assignment Lab: CSV to JSON Converter
 
 Imagine you work at a Bitcoin exchange and you have customer information coming from another source: SSN, credit card and their bitcoin numbers. However, the file format is CSV and your exchange can only support JSON. This Node script will convert CSV into JSON.
 
@@ -17,7 +17,7 @@ id,first_name,last_name,email,gender,ip_address,ssn,credit_card,bitcoin,street_a
 This node script will convert the customer-data.csv file into a JSON file. The 1st row of the CSV file acts as the keys/properties of the JSON object and the rest of the fields act as values. The JSON test file have an array with 1000 items. The Output JSON file will be produced in the same directory and named customer-data.json.
 
 Here's an example of the JSON file structure which this Node program will produce:
-
+```
 [
   {
     "id": "1",
@@ -44,10 +44,11 @@ Here's an example of the JSON file structure which this Node program will produc
     "street_address": "90 Sutteridge Way"
   },
   ...
+  ```
 
 HOW MAKE A LOCAL INSTALLATION:
-$ git clone git@github.com:jomayma/csv2json.git
-$ cd csv2json
-$ npm install
-$ node csv2json.js <csv_input_file>
-(for example: node csv2json.js test/customer-data.csv)
+>$ git clone git@github.com:jomayma/csv2json.git
+>$ cd csv2json
+>$ npm install
+>$ node csv2json.js <csv_input_file
+>(for example: `node csv2json.js test/customer-data.csv`)
