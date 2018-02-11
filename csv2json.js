@@ -4,12 +4,12 @@ const readline = require('readline')
 
 var path_input_file = path.join(__dirname, '/test/customer-data.csv')
 var path_output_file = path.join(__dirname, '/test/customer-data.json')
-var is_first_line = true
+var is_header_line = true
 var is_second_line = true
 var keys = []
 
 //Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
-fs.appendFileSync(path_output_file, '[', {flag: "w"})
+fs.appendFileSync(path_output_file, '[\n', {flag: "w"})
 
 const splitFieldsFromLine = (line, separator) => {
   let arrF = []
@@ -28,23 +28,25 @@ const rl = readline.createInterface({
 })
 
 rl.on('line', (line) => {
-  if (is_first_line) {
+  if (is_header_line) {
     keys = splitFieldsFromLine(line, ',')
-    is_first_line = false
+    is_header_line = false
   } else {
+    var values = []
+    var currentObjStr = ""
     values = splitFieldsFromLine(line, ',')
     if (is_second_line) {
-      fs.appendFileSync(path_output_file, '{')
+      currentObjStr += "\t{\n"
       is_second_line = false
     } else {
-      fs.appendFileSync(path_output_file, ', {')
+      currentObjStr += "\t,{\n"
     }
-    fs.appendFileSync(path_output_file, `"${keys[0]}": "${values[0]}"`)
+    currentObjStr += `\t\t"${keys[0]}": "${values[0]}"\n`
     for (let i = 1; i < keys.length; i++){
-      fs.appendFileSync(path_output_file, `,"${keys[i]}": "${values[i]}"`)
+      currentObjStr += `\t\t,"${keys[i]}": "${values[i]}"\n`
     }
-    fs.appendFileSync(path_output_file, '}\n')
-    values = []
+    currentObjStr += '\t}\n'
+    fs.appendFileSync(path_output_file, currentObjStr)
   }
 });
 

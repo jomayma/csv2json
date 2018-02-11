@@ -1,3 +1,8 @@
+edX - Microsoft: DEV283x
+Introduction to Node.js
+
+Module 1 Assignment Lab: CSV to JSON Converter
+
 Imagine you work at a Bitcoin exchange and you have customer information coming from another source: SSN, credit card and their bitcoin numbers. However, the file format is CSV and your exchange can only support JSON. This Node script will convert CSV into JSON.
 
 A CSV file is like a table. It has the following structure in which the first line has the field names and the rest of the lines have the data:
