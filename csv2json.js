@@ -16,9 +16,7 @@ if (path2inputCSVfile != null) {
 var is_header_line = true
 var is_second_line = true
 var keys = []
-
-//Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
-fs.appendFileSync(path_output_file, '[\n', {flag: "w"})
+var currentObjStr = "["
 
 const splitFieldsFromLine = (line, separator) => {
   let arrF = []
@@ -42,38 +40,33 @@ rl.on('line', (line) => {
     is_header_line = false
   } else {
     var values = []
-    var currentObjStr = ""
     values = splitFieldsFromLine(line, ',')
     if (is_second_line) {
-      currentObjStr += "  {\n"
+      currentObjStr += "{"
       is_second_line = false
     } else {
-      currentObjStr += "  ,{\n"
+      currentObjStr += ",{"
     }
-    currentObjStr += `    "${keys[0]}": "${values[0]}"\n`
+    currentObjStr += `"${keys[0]}": "${values[0]}"`
     for (let i = 1; i < keys.length; i++){
-      currentObjStr += `    ,"${keys[i]}": "${values[i]}"\n`
+      currentObjStr += `,"${keys[i]}": "${values[i]}"`
     }
-    currentObjStr += '  }\n'
-    fs.appendFileSync(path_output_file, currentObjStr)
+    currentObjStr += '}'
   }
 });
 
 rl.on("close", () => {
-  fs.appendFileSync(path_output_file, ']')
-  //CHECKING THE JSON VALIDITY OF THE OUTPUT FILE
-  fs.readFile(path_output_file, {encoding: 'utf-8'}, function (error, data) {
-    if (error) return console.error(error)
-    else {
-      try {    
-        jsonObj = JSON.parse(data)
-        console.log(`Input file = ${path_input_file}`)
-        console.log(`Output file = ${path_output_file}`)
-        console.log("CONGRATULATIONS! the output file is JSON object")
-        //console.log(`CONGRATULATIONS! the output file is JSON object :: ${JSON.stringify(jsonObj)}`)
-      } catch (e) {
-        console.error(`OOPS! the output file is not JSON! ${e}`)
-      }
-    }
-  })
-})
+  currentObjStr += ']'
+  try {
+    //CHECKING THE JSON VALIDITY OF THE OBJECT STRING
+    jsonObj = JSON.parse(currentObjStr)
+    //Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
+    fs.writeFile(path_output_file, JSON.stringify(jsonObj, null, 2), {encoding : "utf8", flag: "w"}, (err) => {
+      if (err) return process.exit(1)
+      console.log(`Input file = ${path_input_file}`)
+      console.log(`Output file = ${path_output_file}`)
+      console.log("CONGRATULATIONS! You got an output file in JSON from CSV input file!")
+    })
+  } catch (e) {
+    console.error(`OOPS! It was verified some problem creating the output JSON file! ${e}`)
+}})
